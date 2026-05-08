@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northeast Empire Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #1a2744;
+    --navy-dark: #111d35;
+    --navy-mid: #1e2f52;
+    --gold: #b8912a;
+    --gold-light: #c9a44a;
+    --gold-line: #c4962e;
+    --silver: #8c93a8;
+    --silver-light: #c5cad8;
+    --off-white: #f6f5f2;
+    --white: #ffffff;
+    --text-body: #3d4458;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
+
+  /* ─── HEADER ─── */
+  header {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 28px 52px 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 70%, rgba(255,255,255,0) 100%);
+  }
+
+  .logo-wrap { display: flex; flex-direction: column; gap: 0; }
+  .logo-monogram {
+    display: flex; align-items: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 68px; font-weight: 700;
+    color: var(--navy); line-height: 1; position: relative;
+  }
+  .logo-monogram .letter-n { color: var(--navy); }
+  .logo-monogram .letter-e { color: var(--silver); }
+  .logo-building-icon {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    bottom: 4px; display: flex; align-items: flex-end; gap: 2px;
+  }
+  .logo-building-icon span {
+    display: block; background: var(--silver-light); width: 6px;
+    border-radius: 1px 1px 0 0;
+  }
+  .logo-name-wrap { padding-left: 2px; }
+  .logo-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;
+    color: var(--navy); letter-spacing: 1.5px; line-height: 1;
+    text-transform: uppercase;
+  }
+  .logo-name span { font-weight: 400; }
+  .logo-sub {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 3px;
+  }
+  .logo-sub::before, .logo-sub::after {
+    content: ''; flex: 1; height: 1px; background: var(--gold-line);
+  }
+  .logo-sub-text {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+    letter-spacing: 4px; color: var(--gold-line); text-transform: uppercase; font-weight: 600;
+  }
+
+  nav { display: flex; align-items: center; gap: 0; padding-top: 14px; }
+  nav a {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 1.8px; text-transform: uppercase; text-decoration: none;
+    color: var(--navy); padding: 10px 18px; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--navy); color: var(--white) !important;
+    padding: 13px 28px !important; margin-left: 16px;
+    font-size: 12px !important; letter-spacing: 1.5px !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--navy-mid) !important; color: var(--gold-light) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative; min-height: 620px;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.88) 35%, rgba(255,255,255,0.3) 55%, rgba(255,255,255,0) 70%),
+      url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80') center/cover no-repeat;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 160px 52px 80px; max-width: 620px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 700; line-height: 1.1; color: var(--navy);
+    margin-bottom: 1.2rem; letter-spacing: -0.5px;
+  }
+
+  .hero-gold-rule {
+    width: 56px; height: 2px; background: var(--gold-line); margin-bottom: 1.4rem;
+  }
+
+  .hero-desc {
+    font-size: 16px; font-weight: 300; color: var(--text-body);
+    line-height: 1.65; margin-bottom: 2.2rem; max-width: 380px;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    background: var(--navy); color: var(--white);
+    padding: 15px 36px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px;
+    font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.25s, letter-spacing 0.25s;
+  }
+  .hero-btn:hover { background: var(--navy-mid); letter-spacing: 3px; }
+
+  /* ─── PILLARS STRIP ─── */
+  .pillars {
+    background: var(--navy);
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pillar {
+    display: flex; align-items: flex-start; gap: 22px;
+    padding: 40px 44px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .pillar:last-child { border-right: none; }
+
+  .pillar-icon {
+    flex-shrink: 0; width: 58px; height: 58px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pillar-icon svg { width: 52px; height: 52px; }
+
+  .pillar-text {}
+  .pillar-name {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--white);
+    margin-bottom: 10px;
+  }
+  .pillar-desc {
+    font-size: 14px; font-weight: 300; color: var(--silver-light);
+    line-height: 1.6;
+  }
+
+  /* ─── PARTNER SECTION ─── */
+  .partner {
+    display: grid; grid-template-columns: 1fr 1.5fr auto;
+    align-items: center; gap: 4rem;
+    padding: 64px 52px; background: var(--white);
+  }
+
+  .partner-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700; color: var(--navy); line-height: 1.2;
+  }
+  .partner-heading-rule {
+    width: 44px; height: 2px; background: var(--gold-line); margin-top: 14px;
+  }
+
+  .partner-desc {
+    font-size: 15px; font-weight: 300; color: var(--text-body); line-height: 1.75;
+  }
+
+  .partner-btn {
+    display: inline-block; white-space: nowrap;
+    border: 1.5px solid var(--navy); color: var(--navy);
+    padding: 14px 28px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; background: transparent;
+    transition: background 0.2s, color 0.2s;
+  }
+  .partner-btn:hover { background: var(--navy); color: var(--white); }
+
+  /* ─── SERVICES SECTION ─── */
+  .services-section { background: var(--off-white); padding: 80px 52px; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    font-weight: 600; margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3vw, 2.8rem);
+    font-weight: 700; color: var(--navy); line-height: 1.15;
+  }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--silver-light); }
+  .service-card {
+    background: var(--white); padding: 40px 32px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.35s;
+  }
+  .service-card:hover { background: var(--navy); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover .svc-name { color: var(--white); }
+  .service-card:hover .svc-desc { color: var(--silver-light); }
+  .service-card:hover .svc-num { color: rgba(255,255,255,0.12); }
+  .svc-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 5rem;
+    font-weight: 700; color: rgba(26,39,68,0.06);
+    line-height: 1; margin-bottom: -1rem; transition: color 0.3s;
+  }
+  .svc-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+    font-weight: 700; color: var(--navy); margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+  .svc-desc { font-size: 14px; font-weight: 300; color: var(--text-body); line-height: 1.65; transition: color 0.3s; }
+
+  /* ─── WHY US ─── */
+  .why-section { background: var(--navy); padding: 80px 52px; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-section .section-eyebrow { color: var(--gold-light); }
+  .why-section .section-title { color: var(--white); }
+  .why-section .section-desc { color: var(--silver-light); font-weight: 300; font-size: 15px; line-height: 1.75; margin-top: 1rem; }
+  .why-items { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 28px; }
+  .why-item { display: flex; gap: 20px; align-items: flex-start; }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+    color: var(--gold); font-weight: 700; line-height: 1; min-width: 36px;
+  }
+  .why-item-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; letter-spacing: 0.3px; }
+  .why-item-desc { font-size: 13px; color: var(--silver); line-height: 1.6; font-weight: 300; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); }
+  .stat-box { background: var(--navy-mid); padding: 36px 28px; text-align: center; }
+  .stat-big {
+    font-family: 'Cormorant Garamond', serif; font-size: 3.2rem;
+    color: var(--gold-light); font-weight: 700; line-height: 1;
+  }
+  .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--silver); margin-top: 8px; font-family: 'Barlow Condensed', sans-serif; }
+
+  /* ─── PROCESS ─── */
+  .process-section { padding: 80px 52px; background: var(--off-white); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 56px; position: relative; }
+  .process-steps::before {
+    content: ''; position: absolute; top: 27px;
+    left: calc(12.5% + 14px); right: calc(12.5% + 14px);
+    height: 1px; background: var(--gold-line); z-index: 0;
+  }
+  .proc-step { padding: 0 24px; text-align: center; position: relative; }
+  .proc-circle {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: var(--navy); border: 2px solid var(--gold-line);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; position: relative; z-index: 1;
+  }
+  .proc-num { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold-light); font-weight: 700; }
+  .proc-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .proc-desc { font-size: 13px; color: var(--text-body); line-height: 1.6; font-weight: 300; }
+
+  /* ─── SECTORS ─── */
+  .sectors-section { padding: 80px 52px; }
+  .sectors-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+  .sector-card {
+    border: 1px solid #dde1ea; padding: 32px 24px;
+    transition: border-color 0.25s, transform 0.25s; cursor: pointer;
+  }
+  .sector-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .sector-icon { margin-bottom: 16px; }
+  .sector-icon svg { width: 36px; height: 36px; stroke: var(--gold); stroke-width: 1.5; fill: none; }
+  .sector-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .sector-desc { font-size: 13px; color: var(--text-body); line-height: 1.6; font-weight: 300; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testi-section { background: var(--navy); padding: 80px 52px; }
+  .testi-section .section-eyebrow { color: var(--gold-light); }
+  .testi-section .section-title { color: var(--white); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); margin-top: 48px; }
+  .testi-card { background: var(--navy-mid); padding: 36px 32px; }
+  .testi-stars { color: var(--gold-light); font-size: 14px; margin-bottom: 16px; }
+  .testi-quote { font-size: 14px; font-weight: 300; color: var(--silver-light); line-height: 1.75; font-style: italic; margin-bottom: 24px; }
+  .testi-rule { width: 32px; height: 1px; background: var(--gold-line); margin-bottom: 14px; }
+  .testi-name { font-size: 14px; font-weight: 600; color: var(--white); }
+  .testi-role { font-size: 12px; color: var(--silver); margin-top: 3px; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 80px 52px; text-align: center;
+    border-top: 3px solid var(--gold-line);
+    background: var(--white);
+  }
+  .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+  .cta-desc { font-size: 16px; font-weight: 300; color: var(--text-body); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-btn-primary { background: var(--navy); color: var(--white); padding: 15px 36px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .cta-btn-primary:hover { background: var(--navy-mid); }
+  .cta-btn-outline { background: transparent; color: var(--navy); padding: 14px 36px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: 1.5px solid var(--navy); cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .cta-btn-outline:hover { background: var(--navy); color: var(--white); }
+
+  /* ─── FOOTER ─── */
+  footer { background: #0e1829; padding: 60px 52px 32px; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 28px; }
+  .footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+  .footer-brand-sub { font-size: 10px; color: var(--gold-light); letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; margin-bottom: 16px; }
+  .footer-brand-desc { font-size: 13px; color: var(--silver); line-height: 1.65; font-weight: 300; }
+  .footer-col h5 { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; color: var(--gold-light); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+  .footer-col a { display: block; color: var(--silver); font-size: 13px; text-decoration: none; margin-bottom: 9px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold-light); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy { font-size: 12px; color: #555e74; }
+  .footer-tagline { font-size: 12px; color: var(--gold-line); font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-monogram">
+      <span class="letter-n">N</span>
+      <span class="letter-e">E</span>
+    </div>
+    <div class="logo-name-wrap">
+      <div class="logo-name">Northeast <span>Empire</span></div>
+      <div class="logo-sub"><span class="logo-sub-text">Consulting</span></div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#">About Us</a>
+    <a href="#">Services</a>
+    <a href="#">Markets</a>
+    <a href="#">Projects</a>
+    <a href="#">Insights</a>
+    <a href="#">Contact</a>
+    <a href="#" class="nav-cta">Let's Connect</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Building Today.<br>Empowering Tomorrow.</h1>
+    <div class="hero-gold-rule"></div>
+    <p class="hero-desc">Commercial real estate consulting that drives value, strategy, and results.</p>
+    <a href="#services" class="hero-btn">Explore Our Services</a>
+  </div>
+</section>
+
+<!-- PILLARS STRIP -->
+<div class="pillars">
+  <div class="pillar">
+    <div class="pillar-icon">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="20" width="16" height="32" rx="1" stroke="#c9a44a" stroke-width="1.5"/>
+        <rect x="22" y="10" width="16" height="42" rx="1" stroke="#c9a44a" stroke-width="1.5"/>
+        <rect x="36" y="16" width="16" height="36" rx="1" stroke="#c9a44a" stroke-width="1.5"/>
+        <line x1="14" y1="25" x2="14" y2="25" stroke="#c9a44a" stroke-width="1.5"/>
+        <line x1="12" y1="28" x2="16" y2="28" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="12" y1="32" x2="16" y2="32" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="12" y1="36" x2="16" y2="36" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="25" y1="15" x2="35" y2="15" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="25" y1="19" x2="35" y2="19" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="25" y1="23" x2="35" y2="23" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="25" y1="27" x2="35" y2="27" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="39" y1="21" x2="49" y2="21" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="39" y1="25" x2="49" y2="25" stroke="#c9a44a" stroke-width="1"/>
+        <line x1="4" y1="52" x2="56" y2="52" stroke="#c9a44a" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="pillar-text">
+      <div class="pillar-name">Strategy</div>
+      <p class="pillar-desc">Market insight and strategic planning that align real estate decisions with business goals.</p>
+    </div>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-icon">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="16" r="7" stroke="#c9a44a" stroke-width="1.5"/>
+        <circle cx="38" cy="16" r="7" stroke="#c9a44a" stroke-width="1.5"/>
+        <circle cx="30" cy="32" r="7" stroke="#c9a44a" stroke-width="1.5"/>
+        <path d="M10 46c0-6.627 5.373-10 12-10" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M50 46c0-6.627-5.373-10-12-10" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M18 46c0-6.627 5.373-10 12-10s12 3.373 12 10" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="pillar-text">
+      <div class="pillar-name">Management</div>
+      <p class="pillar-desc">Expert oversight and project management that deliver efficiency and performance.</p>
+    </div>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-icon">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 24c0 0 2-4 10-4s10 4 10 4" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M16 30l4-6 8 4 8-4 4 6" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14 36s4-2 8 0 8 2 12 0 8 0 8 0" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M36 38l4 4-4 4M24 38l-4 4 4 4" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="30" cy="22" r="14" stroke="#c9a44a" stroke-width="1.5"/>
+        <path d="M22 46l-8 6M38 46l8 6" stroke="#c9a44a" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="pillar-text">
+      <div class="pillar-name">Solutions</div>
+      <p class="pillar-desc">Innovative solutions tailored to complex real estate challenges and opportunities.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNER SECTION -->
+<section class="partner">
+  <div>
+    <h2 class="partner-heading">Your Partner in<br>Commercial Real Estate</h2>
+    <div class="partner-heading-rule"></div>
+  </div>
+  <p class="partner-desc">Northeast Empire Consulting provides end-to-end advisory services across the commercial real estate lifecycle. From site selection and feasibility to development and asset optimization, we help clients build stronger futures through smarter real estate decisions.</p>
+  <a href="#" class="partner-btn">Learn More About Us</a>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">Comprehensive Construction<br>Consulting Services</h2>
+    </div>
+    <a href="#" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px;">View All Services →</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-num">01</div>
+      <div class="svc-name">Owner's Representation</div>
+      <p class="svc-desc">We serve as your advocate throughout the entire construction process, protecting your interests and ensuring project goals are met with precision.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">02</div>
+      <div class="svc-name">Project Management</div>
+      <p class="svc-desc">End-to-end oversight including scheduling, cost control, contractor coordination, and quality assurance on every commercial and residential job.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">03</div>
+      <div class="svc-name">Feasibility & Due Diligence</div>
+      <p class="svc-desc">Comprehensive site assessments, cost estimating, and risk analysis to inform sound investment decisions before you break ground.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">04</div>
+      <div class="svc-name">Schedule & Cost Control</div>
+      <p class="svc-desc">Rigorous monitoring of project timelines and budgets with proactive mitigation strategies to keep your project on track and within scope.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">05</div>
+      <div class="svc-name">Procurement & Bidding</div>
+      <p class="svc-desc">Strategic contractor selection, bid analysis, and contract negotiation to secure the best value and most qualified teams for your project.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">06</div>
+      <div class="svc-name">Quality Assurance</div>
+      <p class="svc-desc">Systematic inspections and quality control programs ensuring workmanship standards, code compliance, and specification adherence throughout.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="why-grid">
+    <div>
+      <div class="section-eyebrow">Why Northeast Empire</div>
+      <h2 class="section-title" style="color:var(--white);">Your Vision,<br>Our Expertise</h2>
+      <p class="section-desc">We combine deep local market knowledge with industry-leading processes to deliver exceptional outcomes on every engagement.</p>
+      <div class="why-items">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <div>
+            <div class="why-item-title">Northeast Market Expertise</div>
+            <p class="why-item-desc">Deep knowledge of local regulatory environments, labor markets, and supplier networks across the tri-state area and beyond.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <div>
+            <div class="why-item-title">Transparent Communication</div>
+            <p class="why-item-desc">Real-time project dashboards, weekly reports, and a dedicated point-of-contact for every client on every project.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <div>
+            <div class="why-item-title">Proven Track Record</div>
+            <p class="why-item-desc">Over two decades delivering commercial and residential projects on time and within budget across diverse asset classes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-big">98%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">500+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">$2B+</div>
+        <div class="stat-label">Value Managed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">20+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div style="text-align:center;">
+    <div class="section-eyebrow">Our Approach</div>
+    <h2 class="section-title">How We Deliver Results</h2>
+  </div>
+  <div class="process-steps">
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">01</span></div>
+      <div class="proc-title">Discovery & Assessment</div>
+      <p class="proc-desc">We analyze your project goals, site conditions, budget, and timeline to build a clear picture of requirements and risks.</p>
+    </div>
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">02</span></div>
+      <div class="proc-title">Strategy & Planning</div>
+      <p class="proc-desc">A detailed project execution plan covering procurement, scheduling, milestones, and risk mitigation strategies.</p>
+    </div>
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">03</span></div>
+      <div class="proc-title">Active Management</div>
+      <p class="proc-desc">On-site oversight, contractor coordination, cost tracking, and real-time reporting throughout construction.</p>
+    </div>
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">04</span></div>
+      <div class="proc-title">Closeout & Delivery</div>
+      <p class="proc-desc">Final inspections, punch list management, documentation, and warranty coordination for a seamless handover.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors-section">
+  <div class="section-eyebrow">Our Markets</div>
+  <h2 class="section-title">Commercial &amp; Residential<br>Real Estate</h2>
+  <div class="sectors-grid">
+    <div class="sector-card">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 22V4a2 2 0 012-2h8a2 2 0 012 2v18M2 22h20M14 11h1M9 11h1M14 7h1M9 7h1"/></svg>
+      </div>
+      <div class="sector-name">Commercial Office</div>
+      <p class="sector-desc">Class A towers, corporate campuses, and medical office buildings managed with precision at scale.</p>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="sector-name">Residential Development</div>
+      <p class="sector-desc">Custom homes, luxury condominiums, townhouse communities, and multi-family housing from concept to CO.</p>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+      </div>
+      <div class="sector-name">Retail &amp; Mixed-Use</div>
+      <p class="sector-desc">Shopping centers and mixed-use developments that create lasting value for investors and communities.</p>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 6l11-4 11 4M1 6v14h22V6M9 20V10h6v10"/></svg>
+      </div>
+      <div class="sector-name">Industrial &amp; Logistics</div>
+      <p class="sector-desc">Warehousing, distribution centers, and manufacturing facilities built for operational efficiency.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="section-eyebrow">Client Stories</div>
+  <h2 class="section-title" style="color:var(--white);">What Our Clients Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Northeast Empire brought discipline and clarity to a $30M project that had been struggling. They came in, identified the issues, and delivered on time. Exceptional team."</p>
+      <div class="testi-rule"></div>
+      <div class="testi-name">Michael Torres</div>
+      <div class="testi-role">Managing Director, Apex Capital Group</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Building our custom home was the smoothest process we could have imagined. They kept us informed every step of the way and the result exceeded everything we envisioned."</p>
+      <div class="testi-rule"></div>
+      <div class="testi-name">Sandra & James Whitfield</div>
+      <div class="testi-role">Residential Clients, Long Island, NY</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Their owner's representation services saved us over $800K on our mixed-use development. The ROI on their consulting fees was absolutely extraordinary."</p>
+      <div class="testi-rule"></div>
+      <div class="testi-name">David Chen</div>
+      <div class="testi-role">Principal, Eastbridge Development</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">Ready to Build with Confidence?</h2>
+  <p class="cta-desc">Schedule a complimentary consultation with our team and discover how Northeast Empire Consulting can elevate your next project.</p>
+  <div class="cta-btns">
+    <a href="#" class="cta-btn-primary">Schedule a Consultation</a>
+    <a href="#" class="cta-btn-outline">Call (631) 555-0100</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Northeast Empire Consulting</div>
+      <div class="footer-brand-sub">Strategy · Management · Solutions</div>
+      <p class="footer-brand-desc">Building Today. Empowering Tomorrow. Serving commercial and residential real estate clients across the Northeast for over two decades.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <a href="#">Owner's Representation</a>
+      <a href="#">Project Management</a>
+      <a href="#">Feasibility Studies</a>
+      <a href="#">Cost Control</a>
+      <a href="#">Procurement</a>
+      <a href="#">Quality Assurance</a>
+    </div>
+    <div class="footer-col">
+      <h5>Markets</h5>
+      <a href="#">Commercial Office</a>
+      <a href="#">Residential</a>
+      <a href="#">Retail & Mixed-Use</a>
+      <a href="#">Industrial</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="#">About Us</a>
+      <a href="#">Our Team</a>
+      <a href="#">Case Studies</a>
+      <a href="#">Insights</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Northeast Empire Consulting. All rights reserved.</div>
+    <div class="footer-tagline">Building Today. Empowering Tomorrow.</div>
+  </div>
+</footer>
+
+</body>
+</html>
